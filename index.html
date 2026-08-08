@@ -420,13 +420,13 @@
                 </p>
                 <div class="equation">
                 \[m=\frac{u_2-u_1}{k_2-k_1}\]
-                \[m=\frac{0-u_f}{k_j-0}\]<br>
+                \[m=\frac{0-u_f}{k_j-0}\]
                 \[m=-\frac{u_f}{k_j}\]
                 </div>
                 
                 <p>Plugging this into the equation:</p>
                 <div class="equation">
-                    \[u(k)=\left(-\frac{u_f}{k_j}\right)k+b\]
+                \[u(k)=\left(-\frac{u_f}{k_j}\right)k+b\]
                 </div>
                 
                 <p>Using one of the boundary conditions:</p>
@@ -436,167 +436,102 @@
 
                 <p>The equation becomes,</p>
                 <div class="equation">
-                \[u_f=\left(-\frac{u_f}{k_j}\right)(0)+b\]<br>
+                \[u_f=\left(-\frac{u_f}{k_j}\right)(0)+b\]
                 \[b=u_f\]
                 </div>
 
+                <p>Hence:</p>
+                <div class="equation">
+                \[u=\left(-\frac{u_f}{k_j}\right)k+u_f\]
+                </div>
 
+                <p>Factoring out \(u_f\):</p>
+                <div class="equation">
+                \[\boxed{u=u_f\left(1-\frac{k}{k_j}\right)}\]
+                </div>
                 
-                <h3>
-                    3. Deriving the Flow–Density Relationship
-                </h3>
-
-                <p>
-                    Traffic flow is defined as:
-                </p>
-
+                <h3>2.Flow–Density Relationship</h3>
+                <p>Traffic flow is defined as:</p>
                 <div class="equation">
-
-                    \[
-                    q = ku
-                    \]
-
+                    \[q = ku\]
                 </div>
 
-                <p>
-                    Substituting the Greenshield speed-density equation:
-                </p>
-
+                <p>Substituting the Greenshield speed-density equation:</p>
                 <div class="equation">
-
-                    \[
-                    q =
-                    k
-                    \left[
-                    u_f
-                    \left(
-                    1-\frac{k}{k_j}
-                    \right)
-                    \right]
-                    \]
-
+                    \[q=k\left[u_f\left(1-\frac{k}{k_j}\right)\right]\]
+                </div>
+                <p>Therefore:</p>
+                <div class="equation">
+                    \[\boxed{q =u_f k-\frac{u_f}{k_j}k^2}\]
+                </div>
+                
+                <p>Maximum flow occurs when the derivative of flow with respect to density is zero:</p>
+                <div class="equation">
+                    \[\frac{dq}{dk}=0\]\[u_f-\frac{2u_f}{k_j}k=0\]
+                    (k_j)(u_f)=2(u_f)(k_j)
+                </div>
+                <p>Solving for the critical density:</p>
+                
+                <div class="equation">
+                    \[\boxed{k_{\text{critical}}=\frac{k_j}{2}}\]
+                </div>
+                
+                <p>Solving for the critical speed:</p>
+                <div class="equation">
+                    \[u_{\text{critical}}=u_f\left(1-\frac{k_{\text{critical}}}{k_j}\right)\]
+                    \[u_{\text{critical}}=u_f\left(1-\frac{k_j/2}{k_j}\right)\]
+                    \[u_{\text{critical}}=u_f\left(1-\frac{1}{2}\right)\]
+                </div>
+                
+                <p>The corresponding critical speed is:</p>
+                <div class="equation">
+                \[\boxed{u_{\text{critical}}=\frac{u_f}{2}}\]
+                </div>
+                
+               <p>Solving for the maximum flow:</p>
+                <div class="equation">
+                \[q = ku\]
+                \[q_{\max}=k_{\text{critical}}u_{\text{critical}}\]
+                \[q_{\max}=\left(\frac{k_j}{2}\right)\left(\frac{u_f}{2}\right)\]
+                </div>
+                
+                <p>Therefore, the maximum flow is:</p>
+                <div class="equation">
+                    \[\boxed{q_{\max} =\frac{u_f k_j}{4}}\]
+                </div>
+                
+                <h3>3. Speed–Flow Relationship</h3>
+            <p>Traffic flow is defined as:</p>
+                <div class="equation">
+                    \[q = ku\]
                 </div>
 
-                <p>
-                    Therefore:
-                </p>
-
+                <p>From the Greenshield speed-density equation:</p>
                 <div class="equation">
-
-                    \[
-                    \boxed{
-                    q =
-                    u_f k
-                    -
-                    \frac{u_f}{k_j}k^2
-                    }
-                    \]
-
+                    \[q=k\left[u_f\left(1-\frac{k}{k_j}\right)\right]\]
+                </div>
+                
+                <p>We express k in terms of u:</p>
+                <div class="equation">
+                \[u=u_f-\frac{u_fk}{k_j}\]
+                \[uk_j=u_fk_j-u_fk\]
+                \[u_fk=u_fk_j-uk_j\]
+                \[k=k_j-\frac{uk_j}{u_f}\]
                 </div>
 
-
-                <h3>
-                    4. Maximum Flow
-                </h3>
-
-                <p>
-                    Maximum flow occurs when the derivative of flow
-                    with respect to density is zero:
-                </p>
-
+                <p>Going back to our original equation:</p>
                 <div class="equation">
-
-                    \[
-                    \frac{dq}{dk}=0
-                    \]
-
-                    \[
-                    u_f
-                    -
-                    \frac{2u_f}{k_j}k=0
-                    \]
-
+                    \[q = ku\]
+                    \[q=\left(k_j-\frac{uk_j}{u_f}\right)u\]
+                    \[q=uk_j-\frac{u^2k_j}{u_f}\]
                 </div>
 
-                <p>
-                    Solving for the critical density:
-                </p>
+                <p>Therefore, the <strong>speed–flow relationship</strong> for the Greenshield model is: </p>
 
                 <div class="equation">
-
-                    \[
-                    \boxed{
-                    k_c=\frac{k_j}{2}
-                    }
-                    \]
-
+                    \[\boxed{q=uk_j-\frac{u^2k_j}{u_f}}\]
                 </div>
-
-                <p>
-                    The corresponding critical speed is:
-                </p>
-
-                <div class="equation">
-
-                    \[
-                    \boxed{
-                    u_c=\frac{u_f}{2}
-                    }
-                    \]
-
-                </div>
-
-                <p>
-                    Therefore, the maximum flow is:
-                </p>
-
-                <div class="equation">
-
-                    \[
-                    \boxed{
-                    q_{\max}
-                    =
-                    \frac{u_f k_j}{4}
-                    }
-                    \]
-
-                </div>
-
-
-                <table class="parameter-table">
-
-                    <tr>
-                        <th>Parameter</th>
-                        <th>Meaning</th>
-                    </tr>
-
-                    <tr>
-                        <td>\(u_f\)</td>
-                        <td>Free-flow speed</td>
-                    </tr>
-
-                    <tr>
-                        <td>\(k_j\)</td>
-                        <td>Jam density</td>
-                    </tr>
-
-                    <tr>
-                        <td>\(k_c\)</td>
-                        <td>Critical density</td>
-                    </tr>
-
-                    <tr>
-                        <td>\(u_c\)</td>
-                        <td>Critical speed</td>
-                    </tr>
-
-                    <tr>
-                        <td>\(q_{\max}\)</td>
-                        <td>Maximum flow / capacity</td>
-                    </tr>
-
-                </table>
-
+                
             </section>
 
 
