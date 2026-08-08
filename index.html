@@ -195,12 +195,11 @@
         /* =========================
            EQUATIONS
         ========================= */
-
         .equation {
             background: #ffffff;
             border-left: 4px solid #182231;
-            padding: 25px 30px;
-            margin: 30px 0;
+            padding: 15px 30px;
+            margin: 15px 0;
             overflow-x: auto;
             text-align: center;
         }
@@ -208,7 +207,6 @@
         .equation mjx-container {
             font-size: 115% !important;
         }
-
 
         /* =========================
            DEFINITION BOX
@@ -400,87 +398,50 @@
                 </div>
                 <h2>Greenshield Model</h2>
                 <p>The Greenshield model assumes a linear relationship between traffic speed and traffic density. It is one of the simplest and most widely used traffic flow models.</p>
-
+                <p>Let \(u\) represent the average traffic speed and
+                    \(k\) represent traffic density. </p>
                 <div class="definition">
                     <strong>Basic assumption:</strong>
-                    As traffic density increases, average vehicle speed decreases linearly.
+                    Speed decreases linearly with density and satisfies the two boundary conditions.
+                     <ul>
+                    <li>Free-flow condition:\[u(0)=u_f\](speed at zero density)</li>
+                     <li>Jam condition:\[u(k_j)=0\] (speed is zero at jam density\(k_j\))</li>
+                     </ul>
                 </div>
                 <h3>1. Speed–Density Relationship</h3>
-                <p>
-                    Let \(u\) represent the average traffic speed and
-                    \(k\) represent traffic density.
-                </p>
                 <p>The linear relationship can be written as:</p>
                 <div class="equation">
                     \[
-                    u = a + bk
+                    u = mk + b
                     \]
                 </div>
-                <p>Using the boundary conditions:</p>
-                <ul>
-                    <li>At zero density, speed is the free-flow speed \(u_f\).</li>
-                    <li>At jam density \(k_j\), speed becomes zero.</li>
-                </ul>
-
+                <p>
+                 A line passes through \((0,u_f)\) and \((k_j,0)\), so the slope,\(m\), is:
+                </p>
                 <div class="equation">
-                    \[
-                    u = u_f
-                    \qquad \text{when } k=0
-                    \]
-
-                    \[
-                    u = 0
-                    \qquad \text{when } k=k_j
-                    \]
+                \[m=\frac{u_2-u_1}{k_2-k_1}\]<br>
+                \[m=\frac{0-u_f}{k_j-0}\]<br>
+                \[m=-\frac{u_f}{k_j}\]
+                </div>
+                
+                <p>Plugging this into the equation:</p>
+                <div class="equation">
+                    \[u(k)=\left(-\frac{u_f}{k_j}\right)k+b\]
+                </div>
+                
+                <p>Using one of the boundary conditions:</p>
+                <div class="equation">
+                    \[u(0)=u_f\]
                 </div>
 
-                <h3>
-                    2. Deriving the Speed–Density Equation
-                </h3>
-
-                <div class="step">
-
-                    <div class="step-title">
-                        Step 1 — Determine the slope
-                    </div>
-
-                    <div class="equation">
-
-                        \[
-                        b =
-                        \frac{0-u_f}{k_j-0}
-                        =
-                        -\frac{u_f}{k_j}
-                        \]
-
-                    </div>
-
+                <p>The equation becomes,</p>
+                <div class="equation">
+                \[u_f=\left(-\frac{u_f}{k_j}\right)(0)+b\]<br>
+                \[b=u_f\]
                 </div>
 
 
-                <div class="step">
-
-                    <div class="step-title">
-                        Step 2 — Substitute into the linear equation
-                    </div>
-
-                    <div class="equation">
-
-                        \[
-                        \boxed{
-                        u =
-                        u_f
-                        \left(
-                        1-\frac{k}{k_j}
-                        \right)
-                        }
-                        \]
-
-                    </div>
-
-                </div>
-
-
+                
                 <h3>
                     3. Deriving the Flow–Density Relationship
                 </h3>
