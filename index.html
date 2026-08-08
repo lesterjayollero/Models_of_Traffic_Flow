@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Models of Traffic Flow</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+        async>
+    </script>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f7f7f7;
+            color: #182231;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 312px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+
+            background: #ffffff;
+            border-right: 1px solid #dddddd;
+
+            padding: 42px 20px;
+
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 27px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: #182231;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            color: #30445c;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 500;
+
+            padding: 4px 0;
+
+            transition: 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: #182231;
+            transform: translateX(3px);
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main {
+            flex: 1;
+            min-width: 0;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 410px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 60px 50px 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 7vw, 118px);
+            line-height: 0.92;
+
+            font-weight: 800;
+            letter-spacing: -5px;
+
+            color: #182231;
+
+            max-width: 1000px;
+        }
+
+        .hero p {
+            margin-top: 38px;
+
+            font-size: 24px;
+            font-weight: 400;
+
+            color: #526174;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            max-width: 1080px;
+            margin: 0 auto;
+
+            padding: 10px 70px 100px;
+        }
+
+        section {
+            scroll-margin-top: 30px;
+            margin-bottom: 110px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            line-height: 1.2;
+
+            color: #182231;
+
+            margin-bottom: 25px;
+
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-size: 24px;
+            margin-top: 42px;
+            margin-bottom: 16px;
+            color: #182231;
+        }
+
+        section p {
+            font-size: 19px;
+            color: #182231;
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================
+           EQUATIONS
+        ========================= */
+
+        .equation {
+            background: #ffffff;
+
+            border-left: 4px solid #182231;
+
+            padding: 25px 30px;
+
+            margin: 30px 0;
+
+            overflow-x: auto;
+
+            text-align: center;
+        }
+
+        .equation mjx-container {
+            font-size: 115% !important;
+        }
+
+
+        /* =========================
+           DEFINITION BOX
+        ========================= */
+
+        .definition {
+            background: #ffffff;
+
+            border: 1px solid #dddddd;
+
+            padding: 25px 30px;
+
+            margin: 30px 0;
+        }
+
+        .definition strong {
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           DERIVATION STEPS
+        ========================= */
+
+        .step {
+            margin: 32px 0;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           MODEL HEADER
+        ========================= */
+
+        .model-number {
+            font-size: 16px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 2px;
+
+            color: #66758a;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+
+            margin: 30px 0;
+            background: #ffffff;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            border: 1px solid #dddddd;
+
+            padding: 14px 16px;
+
+            text-align: left;
+        }
+
+        .parameter-table th {
+            background: #f0f0f0;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        .back-top {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color: #30445c;
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .wrapper {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+
+                position: relative;
+
+                border-right: none;
+                border-bottom: 1px solid #dddddd;
+
+                padding: 25px 25px;
+            }
+
+            .sidebar h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 22px;
+            }
+
+            .sidebar li {
+                margin: 0;
+            }
+
+            .sidebar a {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 330px;
+                padding: 50px 25px 30px;
+            }
+
+            .hero h1 {
+                font-size: clamp(50px, 14vw, 80px);
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 18px;
+                margin-top: 25px;
+            }
+
+            .content {
+                padding: 20px 25px 70px;
+            }
+
+            section {
+                margin-bottom: 75px;
+            }
+
+            section h2 {
+                font-size: 30px;
+            }
+
+            section p {
+                font-size: 17px;
+            }
+
+            .equation {
+                padding: 20px 15px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="wrapper">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <h2>Contents</h2>
+
+        <ul>
+
+            <li>
+                <a href="#greenshield">
+                    Greenshield
+                </a>
+            </li>
+
+            <li>
+                <a href="#greenberg">
+                    Greenberg
+                </a>
+            </li>
+
+            <li>
+                <a href="#underwood">
+                    Underwood
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="main">
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <header class="hero">
+
+            <h1>
+                MODELS OF<br>
+                TRAFFIC FLOW
+            </h1>
+
+            <p>
+                Mathematical Models for Traffic Stream Analysis
+            </p>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- =========================
+                 GREENSHIELD
+            ========================== -->
+
+            <section id="greenshield">
+
+                <div class="model-number">
+                    Model 01
+                </div>
+
+                <h2>
+                    Greenshield Model
+                </h2>
+
+                <p>
+                    The Greenshield model assumes a linear relationship
+                    between traffic speed and traffic density. It is one
+                    of the simplest and most widely used traffic flow models.
+                </p>
+
+
+                <div class="definition">
+
+                    <strong>Basic assumption:</strong>
+
+                    As traffic density increases, average vehicle speed
+                    decreases linearly.
+
+                </div>
+
+
+                <h3>
+                    1. Speed–Density Relationship
+                </h3>
+
+                <p>
+                    Let \(u\) represent the average traffic speed and
+                    \(k\) represent traffic density.
+                </p>
+
+                <p>
+                    The linear relationship can be written as:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    u = a + bk
+                    \]
+
+                </div>
+
+                <p>
+                    Using the boundary conditions:
+                </p>
+
+                <ul>
+                    <li>At zero density, speed is the free-flow speed \(u_f\).</li>
+                    <li>At jam density \(k_j\), speed becomes zero.</li>
+                </ul>
+
+                <div class="equation">
+
+                    \[
+                    u = u_f
+                    \qquad \text{when } k=0
+                    \]
+
+                    \[
+                    u = 0
+                    \qquad \text{when } k=k_j
+                    \]
+
+                </div>
+
+
+                <h3>
+                    2. Deriving the Speed–Density Equation
+                </h3>
+
+                <div class="step">
+
+                    <div class="step-title">
+                        Step 1 — Determine the slope
+                    </div>
+
+                    <div class="equation">
+
+                        \[
+                        b =
+                        \frac{0-u_f}{k_j-0}
+                        =
+                        -\frac{u_f}{k_j}
+                        \]
+
+                    </div>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-title">
+                        Step 2 — Substitute into the linear equation
+                    </div>
+
+                    <div class="equation">
+
+                        \[
+                        \boxed{
+                        u =
+                        u_f
+                        \left(
+                        1-\frac{k}{k_j}
+                        \right)
+                        }
+                        \]
+
+                    </div>
+
+                </div>
+
+
+                <h3>
+                    3. Deriving the Flow–Density Relationship
+                </h3>
+
+                <p>
+                    Traffic flow is defined as:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q = ku
+                    \]
+
+                </div>
+
+                <p>
+                    Substituting the Greenshield speed-density equation:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q =
+                    k
+                    \left[
+                    u_f
+                    \left(
+                    1-\frac{k}{k_j}
+                    \right)
+                    \right]
+                    \]
+
+                </div>
+
+                <p>
+                    Therefore:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    q =
+                    u_f k
+                    -
+                    \frac{u_f}{k_j}k^2
+                    }
+                    \]
+
+                </div>
+
+
+                <h3>
+                    4. Maximum Flow
+                </h3>
+
+                <p>
+                    Maximum flow occurs when the derivative of flow
+                    with respect to density is zero:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \frac{dq}{dk}=0
+                    \]
+
+                    \[
+                    u_f
+                    -
+                    \frac{2u_f}{k_j}k=0
+                    \]
+
+                </div>
+
+                <p>
+                    Solving for the critical density:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    k_c=\frac{k_j}{2}
+                    }
+                    \]
+
+                </div>
+
+                <p>
+                    The corresponding critical speed is:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    u_c=\frac{u_f}{2}
+                    }
+                    \]
+
+                </div>
+
+                <p>
+                    Therefore, the maximum flow is:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    q_{\max}
+                    =
+                    \frac{u_f k_j}{4}
+                    }
+                    \]
+
+                </div>
+
+
+                <table class="parameter-table">
+
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Meaning</th>
+                    </tr>
+
+                    <tr>
+                        <td>\(u_f\)</td>
+                        <td>Free-flow speed</td>
+                    </tr>
+
+                    <tr>
+                        <td>\(k_j\)</td>
+                        <td>Jam density</td>
+                    </tr>
+
+                    <tr>
+                        <td>\(k_c\)</td>
+                        <td>Critical density</td>
+                    </tr>
+
+                    <tr>
+                        <td>\(u_c\)</td>
+                        <td>Critical speed</td>
+                    </tr>
+
+                    <tr>
+                        <td>\(q_{\max}\)</td>
+                        <td>Maximum flow / capacity</td>
+                    </tr>
+
+                </table>
+
+            </section>
+
+
+
+            <!-- =========================
+                 GREENBERG
+            ========================== -->
+
+            <section id="greenberg">
+
+                <div class="model-number">
+                    Model 02
+                </div>
+
+                <h2>
+                    Greenberg Model
+                </h2>
+
+                <p>
+                    The Greenberg model assumes that the relationship
+                    between speed and density follows a logarithmic
+                    function rather than a linear function.
+                </p>
+
+
+                <div class="definition">
+
+                    <strong>Basic assumption:</strong>
+
+                    Traffic speed decreases logarithmically as density
+                    increases.
+
+                </div>
+
+
+                <h3>
+                    1. Speed–Density Relationship
+                </h3>
+
+                <p>
+                    The Greenberg model is expressed as:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    u =
+                    u_c
+                    \ln
+                    \left(
+                    \frac{k_j}{k}
+                    \right)
+                    }
+                    \]
+
+                </div>
+
+                <p>
+                    where \(u_c\) is a model parameter associated with
+                    the speed at critical conditions.
+                </p>
+
+
+                <h3>
+                    2. Deriving the Flow–Density Relationship
+                </h3>
+
+                <p>
+                    Starting with:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    u =
+                    u_c
+                    \ln
+                    \left(
+                    \frac{k_j}{k}
+                    \right)
+                    \]
+
+                </div>
+
+                <p>
+                    Since:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q=ku
+                    \]
+
+                </div>
+
+                <p>
+                    substitute the speed equation:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q =
+                    k u_c
+                    \ln
+                    \left(
+                    \frac{k_j}{k}
+                    \right)
+                    \]
+
+                </div>
+
+                <p>
+                    Therefore:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    q =
+                    u_c k
+                    \ln
+                    \left(
+                    \frac{k_j}{k}
+                    \right)
+                    }
+                    \]
+
+                </div>
+
+
+                <h3>
+                    3. Critical Density
+                </h3>
+
+                <p>
+                    Maximum flow occurs when:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \frac{dq}{dk}=0
+                    \]
+
+                </div>
+
+                <p>
+                    Differentiating the flow equation gives:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \frac{dq}{dk}
+                    =
+                    u_c
+                    \left[
+                    \ln
+                    \left(
+                    \frac{k_j}{k}
+                    \right)
+                    -1
+                    \right]
+                    \]
+
+                </div>
+
+                <p>
+                    Setting this equal to zero:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \ln
+                    \left(
+                    \frac{k_j}{k_c}
+                    \right)
+                    =1
+                    \]
+
+                </div>
+
+                <p>
+                    Therefore:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    k_c=\frac{k_j}{e}
+                    }
+                    \]
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 UNDERWOOD
+            ========================== -->
+
+            <section id="underwood">
+
+                <div class="model-number">
+                    Model 03
+                </div>
+
+                <h2>
+                    Underwood Model
+                </h2>
+
+                <p>
+                    The Underwood model represents the relationship
+                    between speed and density using an exponential
+                    function. Unlike Greenshield, it does not assume
+                    a linear decrease in speed.
+                </p>
+
+
+                <div class="definition">
+
+                    <strong>Basic assumption:</strong>
+
+                    Speed decreases exponentially as traffic density
+                    increases.
+
+                </div>
+
+
+                <h3>
+                    1. Speed–Density Relationship
+                </h3>
+
+                <p>
+                    The Underwood model can be expressed as:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    u =
+                    u_f
+                    e^{-k/k_0}
+                    }
+                    \]
+
+                </div>
+
+                <p>
+                    where \(k_0\) is a density parameter controlling
+                    the rate at which speed decreases.
+                </p>
+
+
+                <h3>
+                    2. Deriving the Flow–Density Relationship
+                </h3>
+
+                <p>
+                    Starting with the fundamental relationship:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q=ku
+                    \]
+
+                </div>
+
+                <p>
+                    Substitute the Underwood speed-density equation:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q =
+                    k
+                    \left(
+                    u_f e^{-k/k_0}
+                    \right)
+                    \]
+
+                </div>
+
+                <p>
+                    Therefore:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    q =
+                    u_f k e^{-k/k_0}
+                    }
+                    \]
+
+                </div>
+
+
+                <h3>
+                    3. Determining Critical Density
+                </h3>
+
+                <p>
+                    Maximum flow occurs when:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \frac{dq}{dk}=0
+                    \]
+
+                </div>
+
+                <p>
+                    Differentiating:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \frac{dq}{dk}
+                    =
+                    u_f e^{-k/k_0}
+                    \left(
+                    1-\frac{k}{k_0}
+                    \right)
+                    \]
+
+                </div>
+
+                <p>
+                    Setting the derivative equal to zero:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    1-\frac{k_c}{k_0}=0
+                    \]
+
+                </div>
+
+                <p>
+                    Thus:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    k_c=k_0
+                    }
+                    \]
+
+                </div>
+
+
+                <h3>
+                    4. Critical Speed
+                </h3>
+
+                <p>
+                    At critical density:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    u_c
+                    =
+                    u_f
+                    e^{-k_c/k_0}
+                    \]
+
+                </div>
+
+                <p>
+                    Since \(k_c=k_0\):
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    u_c=\frac{u_f}{e}
+                    }
+                    \]
+
+                </div>
+
+
+                <h3>
+                    5. Maximum Flow
+                </h3>
+
+                <p>
+                    Substituting the critical conditions:
+                </p>
+
+                <div class="equation">
+
+                    \[
+                    q_{\max}
+                    =
+                    k_c u_c
+                    \]
+
+                </div>
+
+                <div class="equation">
+
+                    \[
+                    \boxed{
+                    q_{\max}
+                    =
+                    \frac{u_f k_0}{e}
+                    }
+                    \]
+
+                </div>
+
+            </section>
+
+
+            <a href="#" class="back-top">
+                ↑ Back to top
+            </a>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
