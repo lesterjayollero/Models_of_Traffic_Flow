@@ -15,8 +15,8 @@
     <script>
         window.MathJax = {
             tex: {
-                inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]']]
+                inlineMath: [['$', '$'], [['\\(', '\\)']],
+                displayMath: [['$$', '$$'], [['\\[', '\\]']]
             },
             svg: {
                 fontCache: 'global'
@@ -215,7 +215,7 @@
         .definition {
             background: #ffffff;
             border: 1px solid #dddddd;
-            padding: 10px 15px;
+            padding: 10px 20px;
             margin: 15px 0;
         }
 
@@ -561,172 +561,70 @@
                     <li>Model is most applicable to dense urban traffic conditions</li>
                     </ul>
                 </div>
-
-
-                <h3>
-                    1. Speed–Density Relationship
-                </h3>
-
-                <p>
-                    The Greenberg model is expressed as:
-                </p>
-
+                
+                <h3>1. Speed–Density Relationship</h3>
+                <p>The Greenberg model is expressed as:</p>
+                
                 <div class="equation">
-
-                    \[
-                    \boxed{
-                    u =
-                    u_c
-                    \ln
-                    \left(
-                    \frac{k_j}{k}
-                    \right)
-                    }
-                    \]
-
+                    \[\boxed{u = u_0\ln\left(\frac{k_j}{k}\right)}\]
                 </div>
 
                 <p>
-                    where \(u_c\) is a model parameter associated with
+                    where \(u_0\) is a model parameter associated with
                     the speed at critical conditions.
                 </p>
 
 
-                <h3>
-                    2. Deriving the Flow–Density Relationship
-                </h3>
-
-                <p>
-                    Starting with:
-                </p>
-
+                <h3>2. Flow–Density Relationship</h3>
+                <p>Starting with:</p>
                 <div class="equation">
-
-                    \[
-                    u =
-                    u_c
-                    \ln
-                    \left(
-                    \frac{k_j}{k}
-                    \right)
-                    \]
-
+                    \[u = u_0\ln\left(\frac{k_j}{k}\right)\]
                 </div>
 
-                <p>
-                    Since:
-                </p>
-
+                <p>Since:</p>
                 <div class="equation">
-
-                    \[
-                    q=ku
-                    \]
-
+                \[q=ku\]
                 </div>
 
-                <p>
-                    substitute the speed equation:
-                </p>
+                <p>Substitute the speed equation:</p>
 
                 <div class="equation">
-
-                    \[
-                    q =
-                    k u_c
-                    \ln
-                    \left(
-                    \frac{k_j}{k}
-                    \right)
-                    \]
-
+                    \[q = k u_0\ln\left(\frac{k_j}{k}\right)\]
                 </div>
 
-                <p>
-                    Therefore:
-                </p>
-
+                <p>Therefore:</p>
                 <div class="equation">
-
-                    \[
-                    \boxed{
-                    q =
-                    u_c k
-                    \ln
-                    \left(
-                    \frac{k_j}{k}
-                    \right)
-                    }
-                    \]
-
+                    \[\boxed{q = u_0 k\ln\left(\frac{k_j}{k}\right)}\]
+                </div>
+                <p>Solving for the Critical Density:</p>
+                <div class="equation">
+                    \[q = k u_0\ln\left(\frac{k_j}{k}\right)\]
+                    \[q = u_0 k \left(\ln(k_j) - \ln(k)\right)\]
+                    \[q = u_0 \left[k\ln(k_j) - k\ln(k)\right]\]
+                </div>
+                <p>Maximum flow occurs when:</p>
+                <div class="equation">
+                    \[\frac{dq}{dk}=0\]
+                </div>
+                <p>Differentiating the flow equation gives:</p>
+                <div class="equation">
+                $$\frac{dq}{dk} = u_0\left[\ln(k_j)-\left\{k\left(\frac{1}{k}\right)+\ln(k)\right\}\right]$$
+                $$\frac{dq}{dk} = u_0\left[\ln(k_j)-\left\{k\left(\frac{1}{k}\right)+\ln(k)\right\}\right]$$
+                $$\frac{dq}{dk} = u_0\left[\ln(k_j)-1-\ln(k)\right]$$
                 </div>
 
-
-                <h3>
-                    3. Critical Density
-                </h3>
-
-                <p>
-                    Maximum flow occurs when:
-                </p>
-
+                <p>Setting this equal to zero:</p>
                 <div class="equation">
-
-                    \[
-                    \frac{dq}{dk}=0
-                    \]
-
+                $$u_0\left[\ln(k_j)-1-\ln(k)\right] = 0$$
+                $$\left[\ln(k_j)-1-\ln(k)\right] = 0$$
+                $$\left[\ln(k_j)-\ln(k)-1\right] = 0$$
+                $$\ln\left(\frac{k_j}{k}\right) = 1$$
+                $$e^{\ln\left(\frac{k_j}{k}\right)}=e^1$$
+                    
                 </div>
-
-                <p>
-                    Differentiating the flow equation gives:
-                </p>
-
+                <p>Therefore:</p>
                 <div class="equation">
-
-                    \[
-                    \frac{dq}{dk}
-                    =
-                    u_c
-                    \left[
-                    \ln
-                    \left(
-                    \frac{k_j}{k}
-                    \right)
-                    -1
-                    \right]
-                    \]
-
-                </div>
-
-                <p>
-                    Setting this equal to zero:
-                </p>
-
-                <div class="equation">
-
-                    \[
-                    \ln
-                    \left(
-                    \frac{k_j}{k_c}
-                    \right)
-                    =1
-                    \]
-
-                </div>
-
-                <p>
-                    Therefore:
-                </p>
-
-                <div class="equation">
-
-                    \[
-                    \boxed{
-                    k_c=\frac{k_j}{e}
-                    }
-                    \]
-
+                \[\boxed{k_c=\frac{k_j}{e}}\]
                 </div>
 
             </section>
