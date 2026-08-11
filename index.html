@@ -32,342 +32,6 @@
         async>
     </script>
 
-    <style>
-
-        /* =========================
-           RESET
-        ========================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        /* =========================
-           BODY
-        ========================= */
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f7f7f7;
-            color: #182231;
-            line-height: 1.8;
-        }
-
-
-        /* =========================
-           LAYOUT
-        ========================= */
-
-        .wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           SIDEBAR
-        ========================= */
-
-        .sidebar {
-            width: 312px;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-
-            background: #ffffff;
-            border-right: 1px solid #dddddd;
-
-            padding: 42px 20px;
-
-            flex-shrink: 0;
-        }
-
-        .sidebar h2 {
-            font-size: 27px;
-            font-weight: 700;
-            margin-bottom: 28px;
-            color: #182231;
-        }
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin-bottom: 8px;
-        }
-
-        .sidebar a {
-            display: block;
-
-            color: #30445c;
-            text-decoration: none;
-
-            font-size: 18px;
-            font-weight: 500;
-
-            padding: 4px 0;
-
-            transition: 0.2s ease;
-        }
-
-        .sidebar a:hover {
-            color: #182231;
-            transform: translateX(3px);
-        }
-
-
-        /* =========================
-           MAIN CONTENT
-        ========================= */
-
-        .main {
-            flex: 1;
-            min-width: 0;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 410px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 50px 30px;
-        }
-
-        .hero h1 {
-            font-size: clamp(55px, 7vw, 118px);
-            line-height: 0.92;
-            font-weight: 800;
-            letter-spacing: -5px;
-            color: #182231;
-            max-width: 1000px;
-        }
-
-        .hero p {
-            margin-top: 38px;
-            font-size: 24px;
-            font-weight: 400;
-            color: #526174;
-        }
-
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .content {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 10px 70px 100px;
-        }
-
-        section {
-            scroll-margin-top: 30px;
-            margin-bottom: 110px;
-        }
-
-        section h2 {
-            font-size: 36px;
-            line-height: 1.2;
-            color: #182231;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        section h3 {
-            font-size: 24px;
-            margin-top: 42px;
-            margin-bottom: 16px;
-            color: #182231;
-        }
-
-        section p {
-            font-size: 19px;
-            color: #182231;
-            margin-bottom: 28px;
-        }
-
-
-        /* =========================
-           EQUATIONS
-        ========================= */
-        .equation {
-            background: #ffffff;
-            border-left: 4px solid #182231;
-            padding: 4px 12px;
-            margin: 6px 0;
-            overflow-x: auto;
-            text-align: center;
-        }
-
-        .equation mjx-container {
-            font-size: 105% !important;
-        }
-
-        /* =========================
-           DEFINITION BOX
-        ========================= */
-
-        .definition {
-            background: #ffffff;
-            border: 1px solid #dddddd;
-            padding: 10px 20px;
-            margin: 15px 0;
-        }
-
-        .definition strong {
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           DERIVATION STEPS
-        ========================= */
-        .step {
-            margin: 32px 0;
-        }
-
-        .step-title {
-            font-weight: 700;
-            font-size: 19px;
-            margin-bottom: 10px;
-        }
-
-        /* =========================
-           MODEL HEADER
-        ========================= */
-
-        .model-number {
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #66758a;
-            margin-bottom: 10px;
-        }
-
-
-        /* =========================
-           TABLE
-        ========================= */
-
-        .parameter-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: #ffffff;
-        }
-
-        .parameter-table th,
-        .parameter-table td {
-            border: 1px solid #dddddd;
-            padding: 14px 16px;
-            text-align: left;
-        }
-
-        .parameter-table th {
-            background: #f0f0f0;
-            font-weight: 700;
-        }
-
-        /* =========================
-           BACK TO TOP
-        ========================= */
-
-        .back-top {
-            display: inline-block;
-            margin-top: 20px;
-            color: #30445c;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-        @media (max-width: 800px) {
-            .wrapper {
-                display: block;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid #dddddd;
-                padding: 25px 25px;
-            }
-
-            .sidebar h2 {
-                font-size: 24px;
-                margin-bottom: 15px;
-            }
-
-            .sidebar ul {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 4px 22px;
-            }
-
-            .sidebar li {
-                margin: 0;
-            }
-
-            .sidebar a {
-                font-size: 16px;
-            }
-
-            .hero {
-                min-height: 330px;
-                padding: 50px 25px 30px;
-            }
-
-            .hero h1 {
-                font-size: clamp(50px, 14vw, 80px);
-                letter-spacing: -3px;
-            }
-
-            .hero p {
-                font-size: 18px;
-                margin-top: 25px;
-            }
-
-            .content {
-                padding: 20px 25px 70px;
-            }
-
-            section {
-                margin-bottom: 75px;
-            }
-
-            section h2 {
-                font-size: 30px;
-            }
-
-            section p {
-                font-size: 17px;
-            }
-
-            .equation {
-                padding: 5px 10px;
-                margin: 5px 0;
-            }
-
-            .equation mjx-container {
-                font-size: 100% !important;
-        }
-        }
-
-    </style>
 </head>
 
 <body>
@@ -397,6 +61,203 @@
         </header>
 
         <div class="content">
+        <!-- =========================
+     INTERACTIVE MODEL COMPARISON
+========================== -->
+
+<section class="model-explorer" id="model-explorer">
+
+    <div class="model-explorer-header">
+        <div class="model-number">Traffic Flow Explorer</div>
+
+        <h2>Traffic Flow Relationships</h2>
+
+        <p>
+            Compare how Greenshield, Greenberg, and Underwood
+            describe the relationships between speed, density, and flow.
+        </p>
+    </div>
+
+    <!-- MODEL SELECTOR -->
+    <div class="explorer-controls">
+
+        <div class="control-group">
+            <span class="control-label">Model</span>
+
+            <div class="segmented-control">
+                <button class="model-btn active" data-model="greenshield">
+                    Greenshield
+                </button>
+
+                <button class="model-btn" data-model="greenberg">
+                    Greenberg
+                </button>
+
+                <button class="model-btn" data-model="underwood">
+                    Underwood
+                </button>
+            </div>
+        </div>
+
+        <!-- RELATIONSHIP SELECTOR -->
+        <div class="control-group">
+            <span class="control-label">Relationship</span>
+
+            <div class="segmented-control">
+                <button class="relationship-btn active" data-relation="speed-density">
+                    Speed–Density
+                </button>
+
+                <button class="relationship-btn" data-relation="flow-density">
+                    Flow–Density
+                </button>
+
+                <button class="relationship-btn" data-relation="speed-flow">
+                    Speed–Flow
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- GRAPH -->
+    <div class="graph-card">
+
+        <div class="graph-top">
+
+            <div>
+                <div class="graph-title" id="graphTitle">
+                    Speed–Density Relationship
+                </div>
+
+                <div class="graph-description" id="graphDescription">
+                    Speed decreases as traffic density increases.
+                </div>
+            </div>
+
+            <div class="graph-model" id="graphModel">
+                Greenshield
+            </div>
+
+        </div>
+
+        <div class="graph-wrapper">
+
+            <canvas id="trafficGraph"></canvas>
+
+            <div class="graph-tooltip" id="graphTooltip">
+                <strong id="tooltipX"></strong>
+                <span id="tooltipY"></span>
+            </div>
+
+        </div>
+
+        <div class="axis-labels">
+            <span id="xAxisLabel">Density, k (veh/km)</span>
+            <span id="yAxisLabel">Speed, u (km/h)</span>
+        </div>
+
+    </div>
+
+
+    <!-- PARAMETERS -->
+    <div class="parameter-panel">
+
+        <div class="parameter-item">
+
+            <label for="ufSlider">
+                Free-flow speed
+                <strong>
+                    <span id="ufValue">100</span> km/h
+                </strong>
+            </label>
+
+            <input
+                type="range"
+                id="ufSlider"
+                min="40"
+                max="140"
+                value="100"
+            >
+
+        </div>
+
+
+        <div class="parameter-item">
+
+            <label for="kjSlider">
+                Jam density
+                <strong>
+                    <span id="kjValue">150</span> veh/km
+                </strong>
+            </label>
+
+            <input
+                type="range"
+                id="kjSlider"
+                min="50"
+                max="250"
+                value="150"
+            >
+
+        </div>
+
+
+        <div class="parameter-item underwood-only">
+
+            <label for="k0Slider">
+                Underwood density parameter
+                <strong>
+                    <span id="k0Value">55</span> veh/km
+                </strong>
+            </label>
+
+            <input
+                type="range"
+                id="k0Slider"
+                min="20"
+                max="120"
+                value="55"
+            >
+
+        </div>
+
+
+        <div class="parameter-item greenberg-only">
+
+            <label for="u0Slider">
+                Greenberg parameter
+                <strong>
+                    <span id="u0Value">35</span> km/h
+                </strong>
+            </label>
+
+            <input
+                type="range"
+                id="u0Slider"
+                min="10"
+                max="80"
+                value="35"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- EQUATION -->
+    <div class="explorer-equation">
+
+        <span class="equation-label">Model equation</span>
+
+        <div id="explorerEquation">
+            \(u=u_f\left(1-\frac{k}{k_j}\right)\)
+        </div>
+
+    </div>
+
+</section>    
             <!-- =========================
                  GREENSHIELD
             ========================== -->
@@ -910,5 +771,1289 @@
 
 </div>
 
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const canvas = document.getElementById("trafficGraph");
+    const ctx = canvas.getContext("2d");
+
+    const modelButtons =
+        document.querySelectorAll(".model-btn");
+
+    const relationshipButtons =
+        document.querySelectorAll(".relationship-btn");
+
+    const graphTitle =
+        document.getElementById("graphTitle");
+
+    const graphDescription =
+        document.getElementById("graphDescription");
+
+    const graphModel =
+        document.getElementById("graphModel");
+
+    const xAxisLabel =
+        document.getElementById("xAxisLabel");
+
+    const yAxisLabel =
+        document.getElementById("yAxisLabel");
+
+    const explorerEquation =
+        document.getElementById("explorerEquation");
+
+    const tooltip =
+        document.getElementById("graphTooltip");
+
+    const tooltipX =
+        document.getElementById("tooltipX");
+
+    const tooltipY =
+        document.getElementById("tooltipY");
+
+    const ufSlider =
+        document.getElementById("ufSlider");
+
+    const kjSlider =
+        document.getElementById("kjSlider");
+
+    const k0Slider =
+        document.getElementById("k0Slider");
+
+    const u0Slider =
+        document.getElementById("u0Slider");
+
+    const ufValue =
+        document.getElementById("ufValue");
+
+    const kjValue =
+        document.getElementById("kjValue");
+
+    const k0Value =
+        document.getElementById("k0Value");
+
+    const u0Value =
+        document.getElementById("u0Value");
+
+
+    let currentModel = "greenshield";
+    let currentRelation = "speed-density";
+
+
+    /* =====================================================
+       CANVAS RESIZE
+    ===================================================== */
+
+    function resizeCanvas() {
+
+        const rect = canvas.getBoundingClientRect();
+
+        const dpr = window.devicePixelRatio || 1;
+
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        drawGraph();
+    }
+
+
+    /* =====================================================
+       MODEL FUNCTIONS
+    ===================================================== */
+
+    function greenshieldSpeed(k) {
+
+        const uf = Number(ufSlider.value);
+        const kj = Number(kjSlider.value);
+
+        return uf * (1 - k / kj);
+    }
+
+
+    function greenshieldFlow(k) {
+
+        return k * greenshieldSpeed(k);
+    }
+
+
+    function greenbergSpeed(k) {
+
+        const kj = Number(kjSlider.value);
+        const u0 = Number(u0Slider.value);
+
+        if (k <= 0) {
+            return u0 * Math.log(kj);
+        }
+
+        return u0 * Math.log(kj / k);
+    }
+
+
+    function greenbergFlow(k) {
+
+        return k * greenbergSpeed(k);
+    }
+
+
+    function underwoodSpeed(k) {
+
+        const uf = Number(ufSlider.value);
+        const k0 = Number(k0Slider.value);
+
+        return uf * Math.exp(-k / k0);
+    }
+
+
+    function underwoodFlow(k) {
+
+        return k * underwoodSpeed(k);
+    }
+
+
+    /* =====================================================
+       GET VALUE
+    ===================================================== */
+
+    function getValue(x) {
+
+        if (currentModel === "greenshield") {
+
+            if (currentRelation === "speed-density") {
+                return greenshieldSpeed(x);
+            }
+
+            if (currentRelation === "flow-density") {
+                return greenshieldFlow(x);
+            }
+
+            return greenshieldFlow(
+                Number(kjSlider.value) *
+                (1 - x / Number(ufSlider.value))
+            );
+        }
+
+
+        if (currentModel === "greenberg") {
+
+            if (currentRelation === "speed-density") {
+                return greenbergSpeed(x);
+            }
+
+            if (currentRelation === "flow-density") {
+                return greenbergFlow(x);
+            }
+
+            return greenbergFlow(
+                Number(kjSlider.value) *
+                Math.exp(-x / Number(u0Slider.value))
+            );
+        }
+
+
+        if (currentModel === "underwood") {
+
+            if (currentRelation === "speed-density") {
+                return underwoodSpeed(x);
+            }
+
+            if (currentRelation === "flow-density") {
+                return underwoodFlow(x);
+            }
+
+            return underwoodFlow(
+                -Number(k0Slider.value) *
+                Math.log(
+                    x / Number(ufSlider.value)
+                )
+            );
+        }
+
+    }
+
+
+    /* =====================================================
+       GRAPH SETTINGS
+    ===================================================== */
+
+    function getGraphSettings() {
+
+        const kj = Number(kjSlider.value);
+        const uf = Number(ufSlider.value);
+
+        if (currentRelation === "speed-density") {
+
+            return {
+                xMax: kj,
+                yMax: uf,
+                xLabel: "Density, k (veh/km)",
+                yLabel: "Speed, u (km/h)"
+            };
+        }
+
+
+        if (currentRelation === "flow-density") {
+
+            let qMax;
+
+            if (currentModel === "greenshield") {
+
+                qMax = uf * kj / 4;
+
+            } else if (currentModel === "greenberg") {
+
+                const u0 = Number(u0Slider.value);
+
+                qMax = u0 * kj / Math.E;
+
+            } else {
+
+                const k0 = Number(k0Slider.value);
+
+                qMax = uf * k0 / Math.E;
+            }
+
+            return {
+                xMax: kj,
+                yMax: qMax * 1.12,
+                xLabel: "Density, k (veh/km)",
+                yLabel: "Flow, q (veh/h)"
+            };
+        }
+
+
+        /* SPEED-FLOW */
+
+        let qMax;
+
+        if (currentModel === "greenshield") {
+
+            qMax = uf * kj / 4;
+
+        } else if (currentModel === "greenberg") {
+
+            const u0 = Number(u0Slider.value);
+
+            qMax = u0 * kj / Math.E;
+
+        } else {
+
+            const k0 = Number(k0Slider.value);
+
+            qMax = uf * k0 / Math.E;
+        }
+
+        return {
+            xMax: uf,
+            yMax: qMax * 1.12,
+            xLabel: "Speed, u (km/h)",
+            yLabel: "Flow, q (veh/h)"
+        };
+
+    }
+
+
+    /* =====================================================
+       GET GRAPH POINT
+    ===================================================== */
+
+    function getGraphPoint(t) {
+
+        const kj = Number(kjSlider.value);
+        const uf = Number(ufSlider.value);
+
+        if (currentRelation === "speed-density") {
+
+            const k = t * kj;
+
+            return {
+                x: k,
+                y: getValue(k)
+            };
+        }
+
+
+        if (currentRelation === "flow-density") {
+
+            const k = t * kj;
+
+            return {
+                x: k,
+                y: getValue(k)
+            };
+        }
+
+
+        /* SPEED-FLOW */
+
+        const speed = t * uf;
+
+        let density;
+
+        if (currentModel === "greenshield") {
+
+            density =
+                kj * (1 - speed / uf);
+
+        }
+
+        else if (currentModel === "greenberg") {
+
+            density =
+                kj * Math.exp(
+                    -speed /
+                    Number(u0Slider.value)
+                );
+
+        }
+
+        else {
+
+            density =
+                -Number(k0Slider.value) *
+                Math.log(speed / uf);
+        }
+
+        return {
+            x: speed,
+            y: density * speed
+        };
+    }
+
+
+    /* =====================================================
+       DRAW GRAPH
+    ===================================================== */
+
+    function drawGraph() {
+
+        const width =
+            canvas.clientWidth;
+
+        const height =
+            canvas.clientHeight;
+
+        ctx.clearRect(0, 0, width, height);
+
+
+        const margin = {
+            top: 20,
+            right: 25,
+            bottom: 45,
+            left: 60
+        };
+
+
+        const plotWidth =
+            width -
+            margin.left -
+            margin.right;
+
+        const plotHeight =
+            height -
+            margin.top -
+            margin.bottom;
+
+
+        const settings =
+            getGraphSettings();
+
+
+        /* -------------------------
+           GRID
+        ------------------------- */
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "#e9ecef";
+
+        for (let i = 0; i <= 5; i++) {
+
+            const x =
+                margin.left +
+                plotWidth * i / 5;
+
+            ctx.beginPath();
+            ctx.moveTo(x, margin.top);
+            ctx.lineTo(
+                x,
+                margin.top + plotHeight
+            );
+            ctx.stroke();
+
+
+            const y =
+                margin.top +
+                plotHeight * i / 5;
+
+            ctx.beginPath();
+            ctx.moveTo(
+                margin.left,
+                y
+            );
+
+            ctx.lineTo(
+                margin.left + plotWidth,
+                y
+            );
+
+            ctx.stroke();
+        }
+
+
+        /* -------------------------
+           AXES
+        ------------------------- */
+
+        ctx.strokeStyle = "#182231";
+        ctx.lineWidth = 1.2;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            margin.left,
+            margin.top
+        );
+
+        ctx.lineTo(
+            margin.left,
+            margin.top + plotHeight
+        );
+
+        ctx.lineTo(
+            margin.left + plotWidth,
+            margin.top + plotHeight
+        );
+
+        ctx.stroke();
+
+
+        /* -------------------------
+           AXIS NUMBERS
+        ------------------------- */
+
+        ctx.fillStyle = "#66758a";
+        ctx.font = "11px Inter, sans-serif";
+        ctx.textAlign = "center";
+
+        for (let i = 0; i <= 5; i++) {
+
+            const value =
+                settings.xMax * i / 5;
+
+            const x =
+                margin.left +
+                plotWidth * i / 5;
+
+            ctx.fillText(
+                formatNumber(value),
+                x,
+                margin.top +
+                plotHeight +
+                20
+            );
+        }
+
+
+        ctx.textAlign = "right";
+
+        for (let i = 0; i <= 5; i++) {
+
+            const value =
+                settings.yMax *
+                (5 - i) / 5;
+
+            const y =
+                margin.top +
+                plotHeight * i / 5;
+
+            ctx.fillText(
+                formatNumber(value),
+                margin.left - 8,
+                y + 4
+            );
+        }
+
+
+        /* -------------------------
+           CURVE
+        ------------------------- */
+
+        ctx.beginPath();
+
+        let firstPoint = true;
+
+        for (let i = 0; i <= 300; i++) {
+
+            const t = i / 300;
+
+            let point;
+
+            try {
+                point = getGraphPoint(t);
+            } catch {
+                continue;
+            }
+
+            if (
+                !isFinite(point.x) ||
+                !isFinite(point.y) ||
+                point.y < 0
+            ) {
+                continue;
+            }
+
+
+            const px =
+                margin.left +
+                (point.x /
+                settings.xMax) *
+                plotWidth;
+
+
+            const py =
+                margin.top +
+                plotHeight -
+                (point.y /
+                settings.yMax) *
+                plotHeight;
+
+
+            if (
+                px < margin.left ||
+                px > margin.left + plotWidth ||
+                py < margin.top ||
+                py > margin.top + plotHeight
+            ) {
+                continue;
+            }
+
+
+            if (firstPoint) {
+
+                ctx.moveTo(px, py);
+
+                firstPoint = false;
+
+            } else {
+
+                ctx.lineTo(px, py);
+
+            }
+
+        }
+
+
+        ctx.strokeStyle = "#182231";
+        ctx.lineWidth = 3;
+
+        ctx.stroke();
+
+
+        /* -------------------------
+           CRITICAL POINT
+        ------------------------- */
+
+        drawCriticalPoint(
+            settings,
+            margin,
+            plotWidth,
+            plotHeight
+        );
+
+    }
+
+
+    /* =====================================================
+       CRITICAL POINT
+    ===================================================== */
+
+    function drawCriticalPoint(
+        settings,
+        margin,
+        plotWidth,
+        plotHeight
+    ) {
+
+        let k;
+        let u;
+        let q;
+
+
+        if (currentModel === "greenshield") {
+
+            k =
+                Number(kjSlider.value) / 2;
+
+            u =
+                Number(ufSlider.value) / 2;
+
+            q = k * u;
+
+        }
+
+
+        else if (currentModel === "greenberg") {
+
+            k =
+                Number(kjSlider.value) / Math.E;
+
+            u =
+                Number(u0Slider.value);
+
+            q = k * u;
+
+        }
+
+
+        else {
+
+            k =
+                Number(k0Slider.value);
+
+            u =
+                Number(ufSlider.value) / Math.E;
+
+            q = k * u;
+
+        }
+
+
+        let x;
+        let y;
+
+
+        if (currentRelation === "speed-density") {
+
+            x = k;
+            y = u;
+
+        }
+
+        else if (currentRelation === "flow-density") {
+
+            x = k;
+            y = q;
+
+        }
+
+        else {
+
+            x = u;
+            y = q;
+
+        }
+
+
+        const px =
+            margin.left +
+            (x / settings.xMax) *
+            plotWidth;
+
+
+        const py =
+            margin.top +
+            plotHeight -
+            (y / settings.yMax) *
+            plotHeight;
+
+
+        if (
+            px < margin.left ||
+            px > margin.left + plotWidth ||
+            py < margin.top ||
+            py > margin.top + plotHeight
+        ) {
+            return;
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+            px,
+            py,
+            5,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+
+        ctx.strokeStyle = "#182231";
+        ctx.lineWidth = 2;
+
+        ctx.stroke();
+
+    }
+
+
+    /* =====================================================
+       NUMBER FORMAT
+    ===================================================== */
+
+    function formatNumber(value) {
+
+        if (!isFinite(value)) {
+            return "";
+        }
+
+        if (Math.abs(value) >= 100) {
+            return Math.round(value);
+        }
+
+        return value.toFixed(1);
+    }
+
+
+    /* =====================================================
+       UPDATE INTERFACE
+    ===================================================== */
+
+    function updateInterface() {
+
+        const settings =
+            getGraphSettings();
+
+
+        /* Parameter values */
+
+        ufValue.textContent =
+            ufSlider.value;
+
+        kjValue.textContent =
+            kjSlider.value;
+
+        k0Value.textContent =
+            k0Slider.value;
+
+        u0Value.textContent =
+            u0Slider.value;
+
+
+        /* Model */
+
+        graphModel.textContent =
+            capitalize(currentModel);
+
+
+        /* Relationship */
+
+        if (currentRelation === "speed-density") {
+
+            graphTitle.textContent =
+                "Speed–Density Relationship";
+
+            graphDescription.textContent =
+                getDescription("speed-density");
+
+        }
+
+        else if (currentRelation === "flow-density") {
+
+            graphTitle.textContent =
+                "Flow–Density Relationship";
+
+            graphDescription.textContent =
+                getDescription("flow-density");
+
+        }
+
+        else {
+
+            graphTitle.textContent =
+                "Speed–Flow Relationship";
+
+            graphDescription.textContent =
+                getDescription("speed-flow");
+
+        }
+
+
+        xAxisLabel.textContent =
+            settings.xLabel;
+
+        yAxisLabel.textContent =
+            settings.yLabel;
+
+
+        updateEquation();
+
+
+        /* Show relevant parameters */
+
+        document
+            .querySelectorAll(".greenberg-only")
+            .forEach(el => {
+
+                el.style.display =
+                    currentModel === "greenberg"
+                    ? "block"
+                    : "none";
+
+            });
+
+
+        document
+            .querySelectorAll(".underwood-only")
+            .forEach(el => {
+
+                el.style.display =
+                    currentModel === "underwood"
+                    ? "block"
+                    : "none";
+
+            });
+
+
+        drawGraph();
+
+    }
+
+
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
+
+    function getDescription(relation) {
+
+        if (relation === "speed-density") {
+
+            if (currentModel === "greenshield") {
+                return "Speed decreases linearly as density increases.";
+            }
+
+            if (currentModel === "greenberg") {
+                return "Speed decreases logarithmically as density increases.";
+            }
+
+            return "Speed decreases exponentially as density increases.";
+        }
+
+
+        if (relation === "flow-density") {
+
+            return "Flow increases toward a critical point and then decreases as congestion develops.";
+        }
+
+
+        return "Flow varies with speed and reaches a maximum at the critical condition.";
+    }
+
+
+    /* =====================================================
+       EQUATIONS
+    ===================================================== */
+
+    function updateEquation() {
+
+        let equation = "";
+
+
+        if (
+            currentModel === "greenshield" &&
+            currentRelation === "speed-density"
+        ) {
+
+            equation =
+                "\\(u=u_f\\left(1-\\frac{k}{k_j}\\right)\\)";
+
+        }
+
+
+        else if (
+            currentModel === "greenshield" &&
+            currentRelation === "flow-density"
+        ) {
+
+            equation =
+                "\\(q=u_fk-\\frac{u_f}{k_j}k^2\\)";
+
+        }
+
+
+        else if (
+            currentModel === "greenshield" &&
+            currentRelation === "speed-flow"
+        ) {
+
+            equation =
+                "\\(q=uk_j-\\frac{u^2k_j}{u_f}\\)";
+
+        }
+
+
+        else if (
+            currentModel === "greenberg" &&
+            currentRelation === "speed-density"
+        ) {
+
+            equation =
+                "\\(u=u_0\\ln\\left(\\frac{k_j}{k}\\right)\\)";
+
+        }
+
+
+        else if (
+            currentModel === "greenberg" &&
+            currentRelation === "flow-density"
+        ) {
+
+            equation =
+                "\\(q=u_0k\\ln\\left(\\frac{k_j}{k}\\right)\\)";
+
+        }
+
+
+        else if (
+            currentModel === "greenberg" &&
+            currentRelation === "speed-flow"
+        ) {
+
+            equation =
+                "\\(q=k_jue^{-u/u_0}\\)";
+
+        }
+
+
+        else if (
+            currentModel === "underwood" &&
+            currentRelation === "speed-density"
+        ) {
+
+            equation =
+                "\\(u=u_fe^{-k/k_0}\\)";
+
+        }
+
+
+        else if (
+            currentModel === "underwood" &&
+            currentRelation === "flow-density"
+        ) {
+
+            equation =
+                "\\(q=u_fk e^{-k/k_0}\\)";
+
+        }
+
+
+        else {
+
+            equation =
+                "\\(q=-k_0u\\ln\\left(\\frac{u}{u_f}\\right)\\)";
+
+        }
+
+
+        explorerEquation.innerHTML =
+            equation;
+
+
+        if (window.MathJax) {
+
+            MathJax.typesetPromise([
+                explorerEquation
+            ]);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MODEL BUTTONS
+    ===================================================== */
+
+    modelButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            modelButtons.forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            this.classList.add("active");
+
+            currentModel =
+                this.dataset.model;
+
+            updateInterface();
+
+        });
+
+    });
+
+
+    /* =====================================================
+       RELATIONSHIP BUTTONS
+    ===================================================== */
+
+    relationshipButtons.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            relationshipButtons.forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            this.classList.add("active");
+
+            currentRelation =
+                this.dataset.relation;
+
+            updateInterface();
+
+        });
+
+    });
+
+
+    /* =====================================================
+       SLIDERS
+    ===================================================== */
+
+    [
+        ufSlider,
+        kjSlider,
+        k0Slider,
+        u0Slider
+    ].forEach(slider => {
+
+        slider.addEventListener(
+            "input",
+            updateInterface
+        );
+
+    });
+
+
+    /* =====================================================
+       TOOLTIP
+    ===================================================== */
+
+    canvas.addEventListener(
+        "mousemove",
+        function (event) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            const mouseX =
+                event.clientX - rect.left;
+
+            const mouseY =
+                event.clientY - rect.top;
+
+
+            const margin = {
+                top: 20,
+                right: 25,
+                bottom: 45,
+                left: 60
+            };
+
+
+            const plotWidth =
+                rect.width -
+                margin.left -
+                margin.right;
+
+
+            const plotHeight =
+                rect.height -
+                margin.top -
+                margin.bottom;
+
+
+            if (
+                mouseX < margin.left ||
+                mouseX >
+                margin.left + plotWidth ||
+                mouseY < margin.top ||
+                mouseY >
+                margin.top + plotHeight
+            ) {
+
+                tooltip.style.display =
+                    "none";
+
+                return;
+            }
+
+
+            const settings =
+                getGraphSettings();
+
+
+            const x =
+                ((mouseX - margin.left) /
+                plotWidth) *
+                settings.xMax;
+
+
+            let y;
+
+
+            if (
+                currentRelation ===
+                "speed-density"
+            ) {
+
+                y = getValue(x);
+
+            }
+
+            else if (
+                currentRelation ===
+                "flow-density"
+            ) {
+
+                y = getValue(x);
+
+            }
+
+            else {
+
+                const uf =
+                    Number(ufSlider.value);
+
+                let k;
+
+                if (
+                    currentModel ===
+                    "greenshield"
+                ) {
+
+                    k =
+                        Number(kjSlider.value) *
+                        (1 - x / uf);
+
+                }
+
+                else if (
+                    currentModel ===
+                    "greenberg"
+                ) {
+
+                    k =
+                        Number(kjSlider.value) *
+                        Math.exp(
+                            -x /
+                            Number(u0Slider.value)
+                        );
+
+                }
+
+                else {
+
+                    k =
+                        -Number(k0Slider.value) *
+                        Math.log(x / uf);
+
+                }
+
+                y = k * x;
+
+            }
+
+
+            if (
+                !isFinite(y) ||
+                y < 0
+            ) {
+
+                tooltip.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            tooltipX.textContent =
+                `${settings.xLabel.split(",")[0]}: ${formatNumber(x)}`;
+
+            tooltipY.textContent =
+                `${settings.yLabel.split(",")[0]}: ${formatNumber(y)}`;
+
+
+            tooltip.style.display =
+                "block";
+
+
+            let left =
+                mouseX + 12;
+
+            let top =
+                mouseY - 50;
+
+
+            if (
+                left + 150 >
+                rect.width
+            ) {
+
+                left =
+                    mouseX - 155;
+
+            }
+
+
+            if (top < 0) {
+                top = 10;
+            }
+
+
+            tooltip.style.left =
+                left + "px";
+
+            tooltip.style.top =
+                top + "px";
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "mouseleave",
+        function () {
+
+            tooltip.style.display =
+                "none";
+
+        }
+    );
+
+
+    /* =====================================================
+       CAPITALIZE
+    ===================================================== */
+
+    function capitalize(text) {
+
+        return text.charAt(0).toUpperCase() +
+            text.slice(1);
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
+
+    updateInterface();
+
+    resizeCanvas();
+
+});
+
+</script>
 </body>
 </html>
