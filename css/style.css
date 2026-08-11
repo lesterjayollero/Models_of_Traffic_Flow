@@ -176,7 +176,421 @@
         .equation mjx-container {
             font-size: 115% !important;
         }
+/* =========================================================
+   INTERACTIVE TRAFFIC FLOW MODEL EXPLORER
+   ========================================================= */
 
+.model-explorer {
+    margin-bottom: 110px;
+    padding-top: 10px;
+}
+
+
+/* -------------------------
+   HEADER
+------------------------- */
+
+.model-explorer-header {
+    margin-bottom: 30px;
+}
+
+.model-explorer-header h2 {
+    margin-bottom: 16px;
+}
+
+.model-explorer-header p {
+    max-width: 800px;
+}
+
+
+/* -------------------------
+   CONTROLS
+------------------------- */
+
+.explorer-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.control-group {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 16px;
+}
+
+.control-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #66758a;
+    margin-bottom: 10px;
+}
+
+
+/* -------------------------
+   SEGMENTED BUTTONS
+------------------------- */
+
+.segmented-control {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.model-btn,
+.relationship-btn {
+    border: 1px solid #d5d9df;
+    background: #f7f7f7;
+    color: #30445c;
+
+    padding: 9px 13px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border 0.2s ease;
+}
+
+.model-btn:hover,
+.relationship-btn:hover {
+    border-color: #182231;
+    color: #182231;
+}
+
+.model-btn.active,
+.relationship-btn.active {
+    background: #182231;
+    border-color: #182231;
+    color: #ffffff;
+}
+
+
+/* -------------------------
+   GRAPH CARD
+------------------------- */
+
+.graph-card {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+
+    padding: 25px 25px 20px;
+
+    position: relative;
+}
+
+
+/* -------------------------
+   GRAPH HEADER
+------------------------- */
+
+.graph-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.graph-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #182231;
+}
+
+.graph-description {
+    font-size: 14px;
+    color: #66758a;
+    margin-top: 3px;
+}
+
+.graph-model {
+    flex-shrink: 0;
+
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    color: #66758a;
+
+    border: 1px solid #dddddd;
+    padding: 6px 10px;
+}
+
+
+/* -------------------------
+   CANVAS
+------------------------- */
+
+.graph-wrapper {
+    position: relative;
+
+    width: 100%;
+    height: 420px;
+
+    background: #ffffff;
+}
+
+#trafficGraph {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+/* -------------------------
+   AXIS LABELS
+------------------------- */
+
+.axis-labels {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #66758a;
+
+    padding: 7px 4px 0;
+}
+
+
+/* -------------------------
+   TOOLTIP
+------------------------- */
+
+.graph-tooltip {
+    position: absolute;
+
+    display: none;
+
+    background: #182231;
+    color: #ffffff;
+
+    padding: 8px 11px;
+
+    font-size: 12px;
+    line-height: 1.5;
+
+    pointer-events: none;
+
+    white-space: nowrap;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.graph-tooltip strong {
+    display: block;
+    font-weight: 700;
+}
+
+.graph-tooltip span {
+    display: block;
+    opacity: 0.85;
+}
+
+
+/* -------------------------
+   PARAMETER PANEL
+------------------------- */
+
+.parameter-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+
+    margin-top: 18px;
+}
+
+
+.parameter-item {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+
+    padding: 15px 17px;
+}
+
+.parameter-item label {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    font-size: 14px;
+    color: #526174;
+
+    margin-bottom: 10px;
+}
+
+.parameter-item label strong {
+    color: #182231;
+    white-space: nowrap;
+}
+
+
+/* -------------------------
+   SLIDERS
+------------------------- */
+
+.parameter-item input[type="range"] {
+    width: 100%;
+
+    height: 4px;
+
+    appearance: none;
+
+    background: #dfe3e8;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+.parameter-item input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #182231;
+
+    cursor: pointer;
+}
+
+
+.parameter-item input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #182231;
+
+    cursor: pointer;
+}
+
+
+/* -------------------------
+   MODEL-SPECIFIC PARAMETERS
+------------------------- */
+
+.greenberg-only,
+.underwood-only {
+    display: none;
+}
+
+
+/* -------------------------
+   EQUATION DISPLAY
+------------------------- */
+
+.explorer-equation {
+    background: #ffffff;
+
+    border-left: 4px solid #182231;
+    border-right: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+
+    margin-top: 18px;
+
+    padding: 14px 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.equation-label {
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    color: #66758a;
+
+    white-space: nowrap;
+}
+
+#explorerEquation {
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .model-explorer {
+        margin-bottom: 75px;
+    }
+
+    .explorer-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .segmented-control {
+        gap: 5px;
+    }
+
+    .model-btn,
+    .relationship-btn {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .graph-card {
+        padding: 18px 15px 15px;
+    }
+
+    .graph-top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .graph-title {
+        font-size: 18px;
+    }
+
+    .graph-wrapper {
+        height: 300px;
+    }
+
+    .parameter-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .explorer-equation {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #explorerEquation {
+        font-size: 16px;
+    }
+
+}
         /* =========================
            DEFINITION BOX
         ========================= */
