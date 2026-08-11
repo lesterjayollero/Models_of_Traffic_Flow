@@ -1,0 +1,331 @@
+ <style>
+
+        /* =========================
+           RESET
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f7f7f7;
+            color: #182231;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           LAYOUT
+        ========================= */
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 312px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+
+            background: #ffffff;
+            border-right: 1px solid #dddddd;
+
+            padding: 42px 20px;
+
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 27px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: #182231;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            display: block;
+
+            color: #30445c;
+            text-decoration: none;
+
+            font-size: 18px;
+            font-weight: 500;
+
+            padding: 4px 0;
+
+            transition: 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: #182231;
+            transform: translateX(3px);
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main {
+            flex: 1;
+            min-width: 0;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 410px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 50px 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 7vw, 118px);
+            line-height: 0.92;
+            font-weight: 800;
+            letter-spacing: -5px;
+            color: #182231;
+            max-width: 1000px;
+        }
+
+        .hero p {
+            margin-top: 38px;
+            font-size: 24px;
+            font-weight: 400;
+            color: #526174;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 10px 70px 100px;
+        }
+
+        section {
+            scroll-margin-top: 30px;
+            margin-bottom: 110px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            line-height: 1.2;
+            color: #182231;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        section h3 {
+            font-size: 24px;
+            margin-top: 42px;
+            margin-bottom: 16px;
+            color: #182231;
+        }
+
+        section p {
+            font-size: 19px;
+            color: #182231;
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================
+           EQUATIONS
+        ========================= */
+        .equation {
+            background: #ffffff;
+            border-left: 4px solid #182231;
+            padding: 10px 16px;
+            margin: 8px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .equation mjx-container {
+            font-size: 115% !important;
+        }
+
+        /* =========================
+           DEFINITION BOX
+        ========================= */
+
+        .definition {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            padding: 10px 20px;
+            margin: 15px 0;
+        }
+
+        .definition strong {
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           DERIVATION STEPS
+        ========================= */
+        .step {
+            margin: 32px 0;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           MODEL HEADER
+        ========================= */
+
+        .model-number {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #66758a;
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: #ffffff;
+        }
+
+        .parameter-table th,
+        .parameter-table td {
+            border: 1px solid #dddddd;
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        .parameter-table th {
+            background: #f0f0f0;
+            font-weight: 700;
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        .back-top {
+            display: inline-block;
+            margin-top: 20px;
+            color: #30445c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+        @media (max-width: 800px) {
+            .wrapper {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #dddddd;
+                padding: 25px 25px;
+            }
+
+            .sidebar h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px 22px;
+            }
+
+            .sidebar li {
+                margin: 0;
+            }
+
+            .sidebar a {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 330px;
+                padding: 50px 25px 30px;
+            }
+
+            .hero h1 {
+                font-size: clamp(50px, 14vw, 80px);
+                letter-spacing: -3px;
+            }
+
+            .hero p {
+                font-size: 18px;
+                margin-top: 25px;
+            }
+
+            .content {
+                padding: 20px 25px 70px;
+            }
+
+            section {
+                margin-bottom: 75px;
+            }
+
+            section h2 {
+                font-size: 30px;
+            }
+
+            section p {
+                font-size: 17px;
+            }
+
+            .equation {
+                padding: 20px 15px;
+            }
+        }
+
+    </style>
